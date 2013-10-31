@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(params[:user])
   	if @user.save
-      #sign_in @user
+      sign_in @user
   		flash[:success] = "The Physics Ninja welcomes you."
   		redirect_to root_path
   	else

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   before_save { |user| user.email = email.downcase }
+  before_save :create_remember_token
 
   NO_SPACES_REGEX = /^[\S]+$/
   validates :username, presence: true, length: { maximum: 50 }, 
@@ -14,4 +15,10 @@ class User < ActiveRecord::Base
 
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+
+  private
+
+    def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+    end
 end 

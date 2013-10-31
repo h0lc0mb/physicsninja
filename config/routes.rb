@@ -1,7 +1,12 @@
 Physicsninja::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/support"
-  get "static_pages/about"
+  get "users/new"
+
+  root to: 'static_pages#home'
+
+  match '/signup',  to: 'users#new'
+
+  match '/support', to: 'static_pages#support'
+  match '/about',   to: 'static_pages#about'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

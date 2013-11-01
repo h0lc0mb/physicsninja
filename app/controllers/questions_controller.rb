@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   def create
   	@question = current_user.questions.build(params[:question])
   	if @question.save
-  		flash[:success] = "Thanks! Your input has been submitted to the ninja."
+  		flash[:success] = "Your question has been submitted to the ninja."
   		redirect_to root_url
   	else
   		@pending_items = []

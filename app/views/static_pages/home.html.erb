@@ -1,3 +1,21 @@
+<% if signed_in? %>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%= render 'shared/user_info'%>
+      </section>
+      <section>
+        <%= render 'shared/question_form' %>
+      </section>
+    </aside>
+    <div class="span8">
+    	<h3>Pending questions</h3>
+        <ol class="questions">
+        	<%= render 'shared/pending' %>
+        </ol>
+    </div>
+  </div>
+<% else %>
  <div class="center hero-unit">
     <h1>Physics Ninja</h1>
     <h2>On-demand answers to any physics question</h2>
@@ -23,3 +41,4 @@
     "Even I can admit: The Ninja's got some sick moves."
     <br><i>Isaac Newton, Physicst & mathematician</i>
   </ul>
+<% end %> 

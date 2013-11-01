@@ -1,0 +1,6 @@
+<% if @pending_items.any? %>
+  <ol class="questions">
+    <%= render partial: 'shared/pending_item', collection: @pending_items %>
+  </ol>
+  <%#= will_paginate @pending_items %>
+<% end %>

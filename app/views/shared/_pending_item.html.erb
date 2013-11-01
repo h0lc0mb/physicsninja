@@ -1,0 +1,9 @@
+<li id="<%= pending_item.id %>">
+	<span class="content">
+		<b>Question:</b>
+		<%= simple_format(pending_item.content) %>
+	</span>
+	<span class="timestamp">
+		Asked <%= time_ago_in_words(pending_item.created_at) %> ago.
+	</span>
+</li>

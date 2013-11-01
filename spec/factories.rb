@@ -9,3 +9,8 @@ FactoryGirl.define do
     	admin true
     end
   end
+
+   factory :question do
+  	content "What is time?"
+  	user
+  end

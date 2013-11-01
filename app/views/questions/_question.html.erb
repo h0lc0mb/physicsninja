@@ -1,0 +1,26 @@
+<li>
+	<span class="content">
+		<b>Question:</b>
+		<%= simple_format(question.content) %>
+	</span>
+	<span class="timestamp">
+		Asked <%= time_ago_in_words(question.created_at) %> ago.
+	</span>
+</li>
+<%# if post.responses.any? %>
+	<%# post.responses.each do |response| %>
+		<%#<ol class="responses">
+			<%# I should be doing render @responses here, but whatever %>
+			<%#<li>
+				<span class="response_content">
+					<b>Answer:</b>
+					<%= simple_format(response.content) %>
+				<%#</span>
+				<span class="timestamp">
+					Answered <%= time_ago_in_words(response.created_at) %>
+					 <%#ago.
+				</span>
+			</li>
+		</ol>
+	<% end %>
+<%# end %>

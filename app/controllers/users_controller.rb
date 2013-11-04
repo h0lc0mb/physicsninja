@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
+  before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :toggle_admin, :toggle_ninja]
   before_filter :correct_user,   only: [:edit, :update]
-  before_filter :admin_user,     only: :destroy
+  before_filter :admin_user,     only: [:index, :destroy, :toggle_admin, :toggle_ninja]
   
   def show
   	@user = User.find(params[:id])
+    if @user.ninja?
+      @questions = Question.order("id DESC").all
+    else
+      @answered_items = @user.answered.paginate(page: params[:page])
+    end
   end
 
   def new
@@ -16,7 +21,7 @@ class UsersController < ApplicationController
   	if @user.save
       sign_in @user
   		flash[:success] = "The Physics Ninja welcomes you."
-  		redirect_to @user
+  		redirect_to root_path
   	else
   		render 'new'
   	end
@@ -45,14 +50,24 @@ class UsersController < ApplicationController
     end
   end
 
+  def toggle_admin
+    @user = User.find(params[:id])
+    @user.toggle!(:admin)
+    flash[:success] = "Admin status changed."
+    redirect_to users_path
+  end
+
+  def toggle_ninja
+    @user = User.find(params[:id])
+    @user.toggle!(:ninja)
+    flash[:success] = "Ninja status changed."
+    redirect_to users_path
+  end
+
   private
 
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
-    end
-
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
     end
 end

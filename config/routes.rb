@@ -1,7 +1,9 @@
 Physicsninja::Application.routes.draw do
   resources :users
   resources :sessions,  only: [:new, :create, :destroy]
-  resources :questions, only: [:show, :create, :destroy, :index]
+  resources :questions do
+    resources :responses, only: [:create, :destroy]
+  end
 
   root to: 'static_pages#home'
 
@@ -11,6 +13,9 @@ Physicsninja::Application.routes.draw do
 
   match '/support', to: 'static_pages#support'
   match '/about',   to: 'static_pages#about'
+
+  match 'users/:id/toggle_admin', to: 'users#toggle_admin'
+  match 'users/:id/toggle_ninja', to: 'users#toggle_ninja'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

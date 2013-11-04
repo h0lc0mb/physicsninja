@@ -1,0 +1,25 @@
+<li id="<%= unapproved_item.id %>">
+	<span class="content">
+		<b>Question from <%= link_to unapproved_item.user.username, unapproved_item.user %> :</b>
+		<%= simple_format(unapproved_item.content) %>
+	</span>
+	<span class="timestamp">
+		Asked <%= time_ago_in_words(unapproved_item.created_at) %> ago.
+	</span>
+	<br>
+		<% unapproved_item.responses.each do |response| %>
+			<ol class="responses">
+				<li>
+					<span class="response_content">
+						<b>Your answer:</b>
+						<%= simple_format(response.content) %>
+					</span>
+					<span class="timestamp">
+						Answered <%= time_ago_in_words(response.created_at) %>
+						ago.
+					</span>
+				</li>
+			</ol>
+		<% end %>
+	<br>
+</li>

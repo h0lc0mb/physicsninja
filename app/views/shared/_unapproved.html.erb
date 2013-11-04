@@ -1,0 +1,6 @@
+<% if @unapproved_items.any? %>
+  <ol class="questions">
+    <%= render partial: 'shared/unapproved_item', collection: @unapproved_items %>
+  </ol>
+  <%#= will_paginate @unapproved_items %>
+<% end %>

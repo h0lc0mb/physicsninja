@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :signed_in_user
   before_filter :correct_user,   only: :destroy
+  before_filter :ninja_user, only: [:show, :index]
 
   def create
   	@question = current_user.questions.build(params[:question])
@@ -17,6 +18,11 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @question = Question.find(params[:id])
+    if signed_in?
+      @response = @question.responses.build
+      @response_items = @question.response_feed.paginate(page: params[:page])
+    end
   end
 
   def index

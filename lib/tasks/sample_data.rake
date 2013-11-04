@@ -6,6 +6,7 @@ namespace :db do
                  password: "I2430ZXQZYhackit",
                  password_confirmation: "I2430ZXQZYhackit")
     admin.toggle!(:admin)
+    admin.toggle!(:ninja)
   end
 
   desc "Fill database with sample data"

@@ -1,20 +1,43 @@
 <% if signed_in? %>
-  <div class="row">
-    <aside class="span4">
-      <section>
-        <%= render 'shared/user_info'%>
-      </section>
-      <section>
-        <%= render 'shared/question_form' %>
-      </section>
-    </aside>
-    <div class="span8">
-    	<h3>Pending questions</h3>
-        <ol class="questions">
-        	<%= render 'shared/pending' %>
-        </ol>
+  <% if current_user.ninja? %>
+    <div class="row">
+      <aside class="span4">
+        <section>
+          <%= render 'shared/user_info'%>
+        </section>
+        <br>
+        <span>
+        <%= link_to "Answer more questions", current_user, class: "btn btn-large btn-primary" %>
+        </span>
+      </aside>
+      <div class="span8">
+        <h3>Awaiting approval <i>(<%= @unapproved_items.count %>)</i></h3>
+          <ol class="questions">
+            <%= render 'shared/unapproved' %>
+          </ol>
+      </div>
     </div>
-  </div>
+  <% else %>
+    <div class="row">
+      <aside class="span4">
+        <section>
+          <%= render 'shared/user_info'%>
+        </section>
+        <span>
+          <%= link_to "View answers", current_user %>
+        </span>
+        <section>
+          <%= render 'shared/question_form' %>
+        </section>
+      </aside>
+      <div class="span8">
+      	<h3>Pending questions <i>(<%= @pending_items.count %>)</i></h3>
+          <ol class="questions">
+          	<%= render 'shared/pending' %>
+          </ol>
+      </div>
+    </div>
+  <% end %>
 <% else %>
  <div class="center hero-unit">
     <h1>Physics Ninja</h1>

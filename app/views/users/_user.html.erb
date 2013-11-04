@@ -1,19 +1,26 @@
 <li>
 	<%= link_to user.username, user %>
-	<% if current_user.admin? && !current_user?(user) %>
-		
-		<%# if !user.admin? %>
-			<%#| <%= link_to "make admin", { controller: :users, action: :toggle_admin, id: user.id }, data: { confirm: "Give this user ninja powers?" } %>
-			| <%= link_to "delete", user, method: :delete,
-																data: { confirm: "You sure?" } %>
-		<%# else %>
-			<%#| verified ninja
+	<% if current_user.admin %>
+		<% if user.admin? %>
+			| admin
+		<% end %>
+		<% if user.ninja? %>
+			| ninja
+		<% end %>
+		<br>
+		<% if !current_user?(user) %>
+			<%= link_to "delete user", user, method: :delete,
+																	data: { confirm: "Delete this user?" } %>
+			<% if !user.admin? %>
+				| <%= link_to "make admin", { controller: :users, action: :toggle_admin, id: user.id }, data: { confirm: "Give this user admin powers?" } %>
+			<% else %>
+				| <%= link_to "demote admin", { controller: :users, action: :toggle_admin, id: user.id }, data: { confirm: "Disable admin powers?" } %>
+			<% end %>
+			<% if !user.ninja? %>
+				| <%= link_to "make ninja", { controller: :users, action: :toggle_ninja, id: user.id }, data: { confirm: "Give this user ninja powers?" } %>
+			<% else %>
+				| <%= link_to "demote ninja", { controller: :users, action: :toggle_ninja, id: user.id }, data: { confirm: "Disable ninja powers?" } %>
+			<% end %>
 		<% end %>
 	<% end %>
-	<%# if current_user.admin? && current_user?(user) %>
-		<%#| verified ninja
-	<% end %>
-	<%#div class="pending">
-		<%= user.posts.count %> <%#questions
-	<%#/div%>
 </li>

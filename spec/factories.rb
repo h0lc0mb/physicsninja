@@ -7,6 +7,7 @@ FactoryGirl.define do
 
     factory :admin do
     	admin true
+      ninja true
     end
   end
 

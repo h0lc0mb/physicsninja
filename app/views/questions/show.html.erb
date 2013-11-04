@@ -1,0 +1,24 @@
+<h3>Question from <%= link_to @question.user.username, @question.user %></h3>
+<span class="timestamp">
+	Asked <%= time_ago_in_words(@question.created_at) %> ago.
+</span>
+<div class="row">
+	<aside class="span6">
+		<section>
+			<br>
+			<b>Question:</b> 
+			<%= simple_format(@question.content) %>
+		</section>
+	</aside>
+	<div class="span6">
+		<br>
+		<% if @question.responses.count==0 %>
+			<%= render 'shared/response_form' %>
+		<% else %>
+			<ul class="response_content">
+				<b>Answer: </b>
+				<%= render 'shared/response_feed' %>
+			</ul>
+		<% end %>
+	</div>
+</div>

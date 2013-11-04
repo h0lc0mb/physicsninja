@@ -1,0 +1,30 @@
+<li id="<%= answered_item.id %>">
+	<span class="content">
+		<b>Question:</b>
+		<%= simple_format(answered_item.content) %>
+	</span>
+	<span class="timestamp">
+		Asked <%= time_ago_in_words(answered_item.created_at) %> ago.
+	</span>
+	<br>
+		<% answered_item.responses.each do |response| %>
+			<ol class="responses">
+				<li>
+					<span class="response_content">
+						<b>Answer from <%= link_to answered_item.user.username, answered_item.user %>:</b>
+						<%= simple_format(response.content) %>
+					</span>
+					<span class="timestamp">
+						Answered <%= time_ago_in_words(response.created_at) %>
+						ago.
+					</span>
+				</li>
+			</ol>
+		<% end %>
+	<br>
+	(Approval button)
+	<br>
+	(Old comments)
+	<br>
+	(Comment)
+</li>

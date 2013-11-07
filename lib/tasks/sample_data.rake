@@ -11,15 +11,21 @@ namespace :db do
 
   desc "Fill database with sample data"
   task populate: :environment do
-    admin = User.create!(username: "genius",
-                 email: "genius@ninja.com",
+    admin = User.create!(username: "admin",
+                 email: "admin@ninja.com",
                  password: "foobar",
                  password_confirmation: "foobar")
     admin.toggle!(:admin)
+
+    ninja = User.create!(username: "ninja",
+                 email: "ninja@ninja.com",
+                 password: "foobar",
+                 password_confirmation: "foobar")
+    ninja.toggle!(:ninja)
     
     99.times do |n|
-      username  = "genius-#{n+1}"
-      email = "genius-#{n+1}@ninja.com"
+      username  = "genius-#{n}"
+      email = "genius-#{n}@ninja.com"
       password  = "password"
       User.create!(username: username,
                    email: email,

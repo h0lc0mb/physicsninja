@@ -1,6 +1,10 @@
 <h1>
 	<%= @user.username %>
 </h1>
-<% if @user.ninja? %>
+<% if @user.ninja? && !@user.admin? %>
 	<i>ninja</i>
+<% elsif @user.admin? && !@user.ninja? %>
+	<i>admin</i>
+<% elsif @user.admin? && @user.ninja? %>
+	<i>admin, ninja</i>
 <% end %>

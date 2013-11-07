@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
   before_filter :signed_in_user
   before_filter :correct_user,   only: :destroy
-  #before_filter :ninja_user, only: [:index]
+  # Add before_filter so only non-ninja, non-admin can ask questions?
 
   def create
   	@question = current_user.questions.build(params[:question])

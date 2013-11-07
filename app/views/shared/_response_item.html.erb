@@ -3,7 +3,7 @@
 		<b>Answer:</b><%= simple_format(response_item.content) %>
 	</span>
 	<span class="timestamp">
-		Answered <%= time_ago_in_words(response.created_at) %>
+		Answered <%= time_ago_in_words(response_item.created_at) %>
 		ago.
 	</span>
 </li>

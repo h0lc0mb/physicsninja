@@ -20,6 +20,17 @@
         </ol>
     </div>
   </div>
+<% elsif @user.admin? && !@user.ninja %>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%= render 'shared/user_info'%>
+      </section>
+    </aside>
+    <div class="span8">
+      <h3>TBD admin</h3>
+    </div>
+  </div>
 <% else %>
 	<div class="row">
 		<aside class="span4">

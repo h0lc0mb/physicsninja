@@ -5,16 +5,17 @@
         <section>
           <%= render 'shared/user_info'%>
         </section>
-        <br>
-        <span>
-        <%= link_to "Answer more questions", current_user, class: "btn btn-large btn-primary" %>
-        </span>
+          <br>
+          <span>
+          <%= link_to "View your answers", current_user, class: "btn btn-large btn-primary" %>
+          </span>
+        </section>
       </aside>
       <div class="span8">
-        <h3>Awaiting approval <i>(<%= @unapproved_items.count %>)</i></h3>
-          <ol class="questions">
-            <%= render 'shared/unapproved' %>
-          </ol>
+        <h3>New questions <i>(<%= @pending_items.count %>)</i></h3>
+        <ul class="questions">
+          <%= render 'shared/pending' %>
+        </ul>
       </div>
     </div>
   <% else %>
@@ -23,17 +24,20 @@
         <section>
           <%= render 'shared/user_info'%>
         </section>
-        <span>
-          <%= link_to "View answers", current_user %>
-        </span>
+        <br>
         <section>
           <%= render 'shared/question_form' %>
         </section>
       </aside>
       <div class="span8">
-      	<h3>Pending questions <i>(<%= @pending_items.count %>)</i></h3>
+        <h3>Answered questions <i>(<%= @answered_items.count %>)</i></h3>
           <ol class="questions">
-          	<%= render 'shared/pending' %>
+            <%= render 'shared/answered' %>
+          </ol>
+          <br>
+          <h3>Pending questions <i>(<%= @pending_items.count %>)</i></h3>
+          <ol class="questions">
+            <%= render 'shared/pending' %>
           </ol>
       </div>
     </div>

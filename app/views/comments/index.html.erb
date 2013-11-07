@@ -1,0 +1,35 @@
+<h3>Question from <%= link_to @question.user.username, @question.user %></h3>
+<span class="timestamp">
+	Asked <%= time_ago_in_words(@question.created_at) %> ago.
+</span>
+<div class="row">
+	<aside class="span6">
+		<section>
+			<br>
+			<b>Question:</b> 
+			<%= simple_format(@question.content) %>
+		</section>
+		<div class="comment_unit">
+			<%= render 'shared/comment_form' %>
+			<%= render 'shared/comment_feed' %>
+		</div>
+	</aside>
+	<div class="span6">
+		<% if @question.responses.any? %>
+			<% @question.responses.each do |response| %>
+				<ol class="responses">
+					<li>
+						<span class="response_content">
+							<b>Answer from <%= link_to response.user.username, response.user %>:</b>
+							<%= simple_format(response.content) %>
+						</span>
+						<span class="timestamp">
+							Answered <%= time_ago_in_words(response.created_at) %>
+							ago.
+						</span>
+					</li>
+				</ol>
+			<% end %>
+		<% end %>
+	</div>
+</div>

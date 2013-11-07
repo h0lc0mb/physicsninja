@@ -1,6 +1,6 @@
 <h1>
-	Hello, <%= current_user.username %>
+	<%= @user.username %>
 </h1>
-<span>
-	<%#= pluralize(current_user.posts.count, "question") %>
-</span>
+<% if @user.ninja? %>
+	<i>ninja</i>
+<% end %>

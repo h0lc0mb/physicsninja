@@ -1,9 +1,12 @@
 <li id="<%= pending_item.id %>">
 	<span class="content">
-		<b>Question:</b>
-		<%= simple_format(pending_item.content) %>
+		<b>Question from <%= link_to pending_item.user.username, pending_item.user %>:</b>
+		<br>
+		<%= truncate(pending_item.content, length: 80) %>
 	</span>
 	<span class="timestamp">
 		Asked <%= time_ago_in_words(pending_item.created_at) %> ago.
 	</span>
+	<br>
+		<%= link_to "View this question", pending_item %>
 </li>

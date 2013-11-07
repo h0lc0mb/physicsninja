@@ -1,0 +1,9 @@
+<li id="<%= comment_item.id%>">
+	<span class="comment_content">
+		<b>Comment from <%= link_to comment_item.user.username, comment_item.user %>:</b><%= simple_format(comment_item.content) %>
+	</span>
+	<span class="timestamp">
+		Submitted <%= time_ago_in_words(comment_item.created_at) %>
+		ago.
+	</span>
+</li>

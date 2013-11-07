@@ -1,6 +1,6 @@
 class ResponsesController < ApplicationController
   before_filter :signed_in_user
-  before_filter :ninja_user, only: :create
+  before_filter :ninja_user
 
   def create
   	@question = Question.find(params[:question_id])
@@ -11,8 +11,14 @@ class ResponsesController < ApplicationController
   		flash[:success] = "Many thanks, ninja."
   		redirect_to @question
   	else
-  		render 'questions/show'
+  		render 'responses/index'
   	end
+  end
+
+  def index
+    @question = Question.find(params[:question_id])
+    @response = @question.responses.build(params[:comment])
+    @response_items = @question.response_feed.paginate(page: params[:page])
   end
 
   def destroy

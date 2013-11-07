@@ -2,7 +2,8 @@ Physicsninja::Application.routes.draw do
   resources :users
   resources :sessions,  only: [:new, :create, :destroy]
   resources :questions do
-    resources :responses, only: [:create, :destroy]
+    resources :responses, only: [:create, :index, :destroy]
+    resources :comments, only: [:create, :index, :destroy]
   end
 
   root to: 'static_pages#home'

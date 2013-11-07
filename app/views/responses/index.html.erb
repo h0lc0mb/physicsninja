@@ -11,11 +11,20 @@
 		</section>
 		<div class="comment_unit">
 			<% if @question.comments.any? %>
-				<ol class="comments">
-					<%= render 'shared/comment_feed' %>
-				</ol>
+				<% @question.comments.each do |comment| %>
+					<ol class="comments">
+						<li>
+							<span class="comment_content">
+								<b>Comment from <%= link_to comment.user.username, comment.user %>:</b><%= simple_format(comment.content) %>
+							</span>
+							<span class="timestamp">
+								Submitted <%= time_ago_in_words(comment.created_at) %>
+								ago.
+							</span>
+						</li>
+					</ol>
+				<% end %>
 			<% end %>
-			<%= render 'shared/comment_form' %>
 		</div>
 	</aside>
 	<div class="span6">

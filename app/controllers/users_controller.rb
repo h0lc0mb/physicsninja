@@ -2,13 +2,15 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :toggle_admin, :toggle_ninja]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: [:index, :destroy, :toggle_admin, :toggle_ninja]
+  before_filter :correct_or_special_user, only: :show
   
   def show
   	@user = User.find(params[:id])
     if @user.ninja?
-      @questions = Question.order("id DESC").all
+      @unapproved_items = current_user.unapproved.paginate(page: params[:page])
     else
       @answered_items = @user.answered.paginate(page: params[:page])
+      @pending_items = current_user.pending.paginate(page: params[:page])
     end
   end
 
@@ -69,5 +71,10 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
+    end
+
+    def correct_or_special_user
+      @user = User.find(params[:id])
+      redirect_to root_url, notice: "Sorry, grasshopper: You must be a ninja to view that page." unless current_user?(@user) || current_user.try(:admin?) || current_user.try(:ninja?)
     end
 end

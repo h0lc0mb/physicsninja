@@ -7,6 +7,11 @@
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", support_path %></li>
           <% if signed_in? %>
+            <% if !current_user.ninja? && !current_user.admin? %>
+              <li><%= link_to "Buy", plans_path %></li>
+            <% end %>
+          <% end %>
+          <% if signed_in? %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>

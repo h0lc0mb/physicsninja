@@ -11,6 +11,7 @@ class QuestionsController < ApplicationController
       redirect_to root_url
   	else
   		@pending_items = []
+      @answered_items = []
   		render 'static_pages/home'
   	end
   end

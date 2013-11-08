@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   has_many :responses
   has_many :comments
+  has_many :purchases
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token

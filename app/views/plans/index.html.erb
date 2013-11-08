@@ -1,0 +1,22 @@
+<% provide(:title, 'Buy') %>
+
+<div class="center">
+  <h1>Purchase</h1>
+  <h2>Increase your physics wisdom</h2>
+  <% @plans.each do |plan| %>
+    &nbsp
+    <div class="plan">
+      <p>
+        <b><%= pluralize(plan.questions, "Question") %></b>
+        <div class="plan_name">
+          <%= plan.name %>
+        </div>
+      </p>
+      <p>
+        <%= number_to_currency plan.price, :precision => 0 %>
+      </p>
+      <%= link_to "Purchase", new_purchase_path(plan_id: plan.id), class: "btn btn-large btn-primary" %>
+    </div>
+    &nbsp
+  <% end %>
+</div>

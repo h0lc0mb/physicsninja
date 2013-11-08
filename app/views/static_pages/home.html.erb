@@ -39,6 +39,9 @@
         <section>
           <%= render 'shared/question_form' %>
         </section>
+        <section>
+          <%= link_to "Buy more questions", plans_path, class: "btn btn-large btn-primary" %>
+        </section>
       </aside>
       <div class="span8">
         <h3>Answered questions <i>(<%= @answered_items.count %>)</i></h3>
@@ -54,7 +57,7 @@
     </div>
   <% end %>
 <% else %>
- <div class="center hero-unit">
+  <div class="center hero-unit">
     <h1>Physics Ninja</h1>
     <h2>On-demand answers to any physics question</h2>
     <h3>Ready to begin?</h3>

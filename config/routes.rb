@@ -1,16 +1,20 @@
 Physicsninja::Application.routes.draw do
   resources :users
-  resources :sessions,  only: [:new, :create, :destroy]
+  resources :sessions,    only: [:new, :create, :destroy]
   resources :questions do
     resources :responses, only: [:create, :index, :destroy]
-    resources :comments, only: [:create, :index, :destroy]
+    resources :comments,  only: [:create, :index, :destroy]
   end
+  resources :plans,       only: :index
+  resources :purchases,   only: [:show, :new, :create, :destroy]
 
   root to: 'static_pages#home'
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+
+  match '/buy',     to: 'plans#index'
 
   match '/support', to: 'static_pages#support'
   match '/about',   to: 'static_pages#about'

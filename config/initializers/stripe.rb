@@ -1,0 +1,4 @@
+STRIPE_SECRET_KEY = sk_test_2Mu3VjvPLeai1szaQXFHXIRB
+STRIPE_PUBLIC_KEY = pk_test_TogoxlRgEzPQLKEewF3NQo3R
+
+Stripe.api_key = STRIPE_SECRET_KEY

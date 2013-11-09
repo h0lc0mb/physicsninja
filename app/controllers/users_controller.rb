@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  #before_save :default_values
   before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :toggle_admin, :toggle_ninja]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: [:index, :destroy, :toggle_admin, :toggle_ninja]
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(params[:user])
   	if @user.save
+      @user.update_attribute(:q_balance, 2)
       sign_in @user
   		flash[:success] = "The Physics Ninja welcomes you."
   		redirect_to root_path
@@ -65,6 +67,10 @@ class UsersController < ApplicationController
     flash[:success] = "Ninja status changed."
     redirect_to users_path
   end
+
+  #def default_values
+  #  self.q_balance ||= 2
+  #end
 
   private
 

@@ -36,12 +36,15 @@
           <%= render 'shared/user_info'%>
         </section>
         <br>
-        <section>
-          <%= render 'shared/question_form' %>
-        </section>
-        <section>
-          <%= link_to "Buy more questions", plans_path, class: "btn btn-large btn-primary" %>
-        </section>
+        <% if @user.q_balance > 0 %>
+          <section>
+            <%= render 'shared/question_form' %>
+          </section>
+        <% else %>
+          <section>
+            <%= link_to "Buy more questions", plans_path, class: "btn btn-large btn-primary" %>
+          </section>
+        <% end %>
       </aside>
       <div class="span8">
         <h3>Answered questions <i>(<%= @answered_items.count %>)</i></h3>

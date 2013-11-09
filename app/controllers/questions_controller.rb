@@ -7,6 +7,9 @@ class QuestionsController < ApplicationController
   	@question = current_user.questions.build(params[:question])
     @user = current_user
   	if @question.save
+      new_balance = @user.q_balance - 1
+      @user.update_attribute(:q_balance, new_balance)
+      sign_in @user
   		flash[:success] = "Your question has been submitted to the ninja."
       redirect_to root_url
   	else

@@ -7,4 +7,6 @@
 	<i>admin</i>
 <% elsif @user.admin? && @user.ninja? %>
 	<i>admin, ninja</i>
+<% else %>
+<i> Questions remaining:</i> <b><%= @user.q_balance %></b>
 <% end %>

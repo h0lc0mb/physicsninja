@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131108041647) do
+ActiveRecord::Schema.define(:version => 20131109001110) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -34,8 +34,9 @@ ActiveRecord::Schema.define(:version => 20131108041647) do
   create_table "purchases", :force => true do |t|
     t.integer  "plan_id"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "stripe_customer_token"
   end
 
   add_index "purchases", ["user_id", "created_at"], :name => "index_purchases_on_user_id_and_created_at"
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20131108041647) do
     t.string   "remember_token"
     t.boolean  "admin",           :default => false
     t.boolean  "ninja",           :default => false
+    t.integer  "q_balance"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

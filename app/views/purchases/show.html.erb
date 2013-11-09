@@ -1,1 +1,8 @@
-TBD
+<% provide(:title, "Purchase") %>
+<h1>Your Purchase</h1>
+<h2>Current Status: <%= @purchase.plan.name %></h2>
+<p>
+	Congratulations, grasshopper. You just bought <b><%= pluralize(@purchase.plan.questions, "question") %></b> for $<%= @purchase.plan.price %>0.
+</p>
+
+<%= link_to "Start asking questions", root_path, class: "btn btn-large btn-primary" %>

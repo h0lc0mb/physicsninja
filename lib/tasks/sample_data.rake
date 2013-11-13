@@ -5,7 +5,7 @@ namespace :db do
                  email: "susan@c4online.com",
                  password: "I2430ZXQZYhackit",
                  password_confirmation: "I2430ZXQZYhackit",
-                 q_balance: 2)
+                 q_balance: 0)
     admin.toggle!(:admin)
     admin.toggle!(:ninja)
   end
@@ -16,14 +16,14 @@ namespace :db do
                  email: "admin@ninja.com",
                  password: "foobar",
                  password_confirmation: "foobar",
-                 q_balance: 2)
+                 q_balance: 0)
     admin.toggle!(:admin)
 
     ninja = User.create!(username: "ninja",
                  email: "ninja@ninja.com",
                  password: "foobar",
                  password_confirmation: "foobar",
-                 q_balance: 2)
+                 q_balance: 0)
     ninja.toggle!(:ninja)
     
     99.times do |n|
@@ -34,7 +34,7 @@ namespace :db do
                    email: email,
                    password: password,
                    password_confirmation: password,
-                   q_balance: 2)
+                   q_balance: 0)
     end
 
     users = User.all(limit: 6)
@@ -42,5 +42,8 @@ namespace :db do
       content = Faker::Lorem.paragraph(5)
       users.each { |user| user.questions.create!(content: content) }
     end
+
+    plan = Plan.first
+    plan.purchases.create!(user_id: 5)
   end
 end

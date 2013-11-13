@@ -1,8 +1,15 @@
 <% provide(:title, "Purchase") %>
 <h1>Your Purchase</h1>
-<h2>Current Status: <%= @purchase.plan.name %></h2>
-<p>
-	Congratulations, grasshopper. You just bought <b><%= pluralize(@purchase.plan.questions, "question") %></b> for $<%= @purchase.plan.price %>0.
-</p>
+<% if @purchase.plan.id == 1 %>
+		<h2>Current Status: Initiated</h2>
+	<p>
+		Congratulations, grasshopper. You just bought your <b>first question</b> for $<%= @purchase.plan.price %>0.
+	</p>
+<% else %>
+	<h2>Current Status: <%= @purchase.plan.name %></h2>
+	<p>
+		Congratulations, grasshopper. You just bought <b><%= pluralize(@purchase.plan.questions, "question") %></b> for $<%= @purchase.plan.price %>0.
+	</p>
+<% end %>
 
 <%= link_to "Start asking questions", root_path, class: "btn btn-large btn-primary" %>

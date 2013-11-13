@@ -35,7 +35,11 @@
   				<noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
   			</div>
 
-  			<%= f.submit "Become a #{@purchase.plan.name}", class: "btn btn-large btn-primary" %>
+  			<% if @purchase.plan.id == 1 %>
+  				<%= f.submit "Initiate", class: "btn btn-large btn-primary" %>
+  			<% else %>
+  				<%= f.submit "Become a #{@purchase.plan.name}", class: "btn btn-large btn-primary" %>
+  			<% end %>
 			<% end %>
 		</div>
 	</div>

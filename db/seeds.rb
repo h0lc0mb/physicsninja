@@ -6,7 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Plan.create!(name: "Novice", price: 12, questions: 1)
-Plan.create!(name: "Spy", price: 27, questions: 3)
+Plan.create!(name: "Initiation", price: 5, questions: 1)
+Plan.create!(name: "Novice", price: 9, questions: 1)
+Plan.create!(name: "Spy", price: 25, questions: 3)
 Plan.create!(name: "Raider", price: 40, questions: 5)
 Plan.create!(name: "Warrior", price: 75, questions: 10)

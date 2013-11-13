@@ -6,14 +6,17 @@ class PurchasesController < ApplicationController
 		plan = Plan.find(params[:plan_id])
 		@purchase = plan.purchases.build
 		@purchase.user = current_user
+		if !@purchase.user.stripe_customer_token.nil? && @purchase.plan.id == 1
+			redirect_to plans_path
+			flash[:notice] = "Nice try, grasshopper! Enterprising as you are, the first-question discount is for first purchases only. But you can buy a legit package below."
+		end
 	end
 
 	def create
 		@purchase = Purchase.new(params[:purchase])
 		@purchase.user = current_user
 		if @purchase.save_with_payment
-			new_balance = @purchase.user.q_balance + @purchase.plan.questions
-			@purchase.user.update_attribute(:q_balance, new_balance)
+			@purchase.update_qbalance
 			sign_in @purchase.user
 			flash[:success] = "Purchase successful!"
 			redirect_to @purchase

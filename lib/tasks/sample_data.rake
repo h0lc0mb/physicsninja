@@ -43,7 +43,7 @@ namespace :db do
       users.each { |user| user.questions.create!(content: content) }
     end
 
-    plan = Plan.first
-    plan.purchases.create!(user_id: 5)
+    #plan = Plan.first
+    #plan.purchases.create!(user_id: 5)
   end
 end

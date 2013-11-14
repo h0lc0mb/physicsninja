@@ -13,10 +13,16 @@
       </span>
     </aside>
     <div class="span8">
-      <h3>Answers <i>(<%= @unapproved_items.count %>)</i></h3>
-      	<i>Awaiting user approval</i>
+      <h3>Questions with new comments <i>(<%= @new_comment_items.count %>)</i></h3>
         <ol class="questions">
-          <%= render 'shared/unapproved' %>
+          <%= render 'shared/new_comment' %>
+        </ol>
+        <br>
+      </div>
+      <div class="span8">
+      <h3>All answered questions <i>(<%= @responded_items.count %>)</i></h3>
+        <ol class="questions">
+          <%= render 'shared/responded' %>
         </ol>
     </div>
   </div>

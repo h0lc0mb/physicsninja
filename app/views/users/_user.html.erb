@@ -1,6 +1,6 @@
-<li>
-	<%= link_to user.username, user %>
-	<% if current_user.admin %>
+<% if current_user.admin %>
+	<li>
+		<%= link_to user.username, user %>
 		<% if user.admin? %>
 			| admin
 		<% end %>
@@ -21,6 +21,8 @@
 			<% else %>
 				| <%= link_to "demote ninja", { controller: :users, action: :toggle_ninja, id: user.id }, data: { confirm: "Disable ninja powers?" } %>
 			<% end %>
+			<br>
+			<%= link_to "give question credit", { controller: :users, action: :give_q, id: user.id }, data: { confirm: "Credit 1 question to #{user.username}?" } %>
 		<% end %>
-	<% end %>
-</li>
+	</li>
+<% end %>

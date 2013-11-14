@@ -5,17 +5,18 @@ class Purchase < ActiveRecord::Base
 
   validates :plan_id, presence: true
   validates :user_id, presence: true
-  #validates :amount, presence: true
 
   attr_accessor :stripe_card_token
+  #include ActionView::Helpers
 
   def save_with_payment
   	if valid?
       if user.stripe_customer_token.nil?
-    		customer = Stripe::Customer.create(description: user_id, 
+        customer = Stripe::Customer.create(description: user_id, 
                                            email: user.email.to_s,
                                            card: stripe_card_token)
         user.stripe_customer_token = customer.id
+        #user.stripe_card_token = stripe_card_token
         save!
       end
 
@@ -30,8 +31,8 @@ class Purchase < ActiveRecord::Base
     false
   end
 
-  def update_qbalance
-    new_balance = self.user.q_balance + self.plan.questions
-    self.user.update_attribute(:q_balance, new_balance)
-  end
+  #def update_qbalance
+  #  new_balance = user.q_balance + plan.questions
+  #  user.update_attribute(:q_balance, new_balance)
+  #end
 end

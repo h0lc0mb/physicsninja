@@ -6,7 +6,7 @@
 	<aside class="span6">
 		<section>
 			<br>
-			<b>Question:</b> 
+			<b>Question from <%= link_to @question.user.username, @question.user %>:</b> 
 			<%= simple_format(@question.content) %>
 		</section>
 		<div class="comment_unit">

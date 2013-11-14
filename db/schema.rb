@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131113200311) do
+ActiveRecord::Schema.define(:version => 20131114005415) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20131113200311) do
   end
 
   add_index "comments", ["question_id", "created_at"], :name => "index_comments_on_question_id_and_created_at"
+
+  create_table "ninjas", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "plans", :force => true do |t|
     t.float    "price"
@@ -70,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20131113200311) do
     t.boolean  "ninja",                 :default => false
     t.integer  "q_balance"
     t.string   "stripe_customer_token"
+    t.string   "stripe_card_token"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

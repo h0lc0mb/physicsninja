@@ -1,0 +1,22 @@
+<h1>Become a Ninja</h1>
+<h3>Think you have what it takes to be a Physics Ninja?</h3>
+<p>Submit your email address below and we'll get in touch.</p>
+
+<section>
+	<div class="row">
+		<div class="span4">
+			<%= form_for(@ninja) do |f| %>
+				<%= render 'shared/error_messages', object: f.object %>
+
+				<%= f.hidden_field :user_id %>
+
+    		<div class="field">
+    			<%= f.label :email, "email" %>
+      		<%= f.text_field :email %>
+  			</div>
+
+  			<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+			<% end %>
+		</div>
+	</div>
+</section>

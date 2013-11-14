@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :responses
   has_many :comments
   has_many :purchases
+  has_many :ninjas
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -28,8 +29,12 @@ class User < ActiveRecord::Base
     Question.joins(:responses).where("questions.user_id = ?", id)
   end
 
-  def unapproved
+  def responded
     Question.joins(:responses).where("responses.user_id = ?", id)
+  end
+
+  def new_comment
+    Question.includes(:responses, :comments).where("responses.user_id = ? and (select comments.user_id from questions join comments order by comments.created_at desc limit 1) != ?", id, id) 
   end
 
   private

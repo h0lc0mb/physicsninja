@@ -16,8 +16,9 @@ class PurchasesController < ApplicationController
 		@purchase = Purchase.new(params[:purchase])
 		@purchase.user = current_user
 		if @purchase.save_with_payment
-			@purchase.update_qbalance
-			sign_in @purchase.user
+			new_balance = @purchase.user.q_balance + @purchase.plan.questions
+			@purchase.user.update_attribute(:q_balance, new_balance)
+  		sign_in @purchase.user
 			flash[:success] = "Purchase successful!"
 			redirect_to @purchase
 		else

@@ -1,0 +1,12 @@
+<li id="<%= new_comment_item.id %>">
+	<span class="content">
+		<b>New comment on <%= link_to "question ##{new_comment_item.id}", new_comment_item%> from <%= link_to new_comment_item.user.username, new_comment_item.user %>:</b>
+		<br>
+		<%= truncate(new_comment_item.comments.last.content, length: 80) %>
+	</span>
+	<span class="timestamp">
+		Asked <%= time_ago_in_words(new_comment_item.created_at) %> ago.
+	</span>
+	<br>
+		<%= link_to "View this question", new_comment_item %>
+</li>

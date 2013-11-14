@@ -7,7 +7,11 @@
         </section>
           <br>
           <span>
-          <%= link_to "View your answers", current_user, class: "btn btn-large btn-primary" %>
+            <% if @new_comment_items.any? %>
+              <%= link_to "You have new comments to view!", current_user, class: "new_comment_button" %>
+            <% else %>
+              <%= link_to "View your answers", current_user, class: "btn btn-large btn-primary" %>
+            <% end %>
           </span>
         </section>
       </aside>

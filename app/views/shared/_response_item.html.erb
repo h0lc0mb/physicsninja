@@ -1,6 +1,6 @@
 <li id="<%= response_item.id%>">
 	<span class="response_content">
-		<b>Answer:</b><%= simple_format(response_item.content) %>
+		<b>Answer from <%= link_to response_item.user.username, response_item.user %>:</b><%= simple_format(response_item.content) %>
 	</span>
 	<span class="timestamp">
 		Answered <%= time_ago_in_words(response_item.created_at) %>

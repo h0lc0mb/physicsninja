@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
     if @user.ninja?
-      @unapproved_items = current_user.unapproved.paginate(page: params[:page])
+      @new_comment_items = current_user.new_comment.paginate(page: params[:page])
+      @responded_items = current_user.responded.paginate(page: params[:page])
     else
       @answered_items = @user.answered.paginate(page: params[:page])
       @pending_items = current_user.pending.paginate(page: params[:page])
@@ -64,6 +65,14 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.toggle!(:ninja)
     flash[:success] = "Ninja status changed."
+    redirect_to users_path
+  end
+
+  def give_q
+    @user = User.find(params[:id])
+    new_balance = @user.q_balance + 1
+    @user.update_attribute(:q_balance, new_balance)
+    flash[:success] = "1 question credited to #{@user.username}."
     redirect_to users_path
   end
 

@@ -7,6 +7,7 @@ Physicsninja::Application.routes.draw do
   end
   resources :plans,       only: :index
   resources :purchases,   only: [:show, :new, :create, :destroy]
+  resources :ninjas,      only: [:new, :create]
 
   root to: 'static_pages#home'
 
@@ -21,6 +22,7 @@ Physicsninja::Application.routes.draw do
 
   match 'users/:id/toggle_admin', to: 'users#toggle_admin'
   match 'users/:id/toggle_ninja', to: 'users#toggle_ninja'
+  match 'users/:id/give_q',       to: 'users#give_q'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

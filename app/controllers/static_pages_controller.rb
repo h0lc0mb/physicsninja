@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
       @user = current_user
       if current_user.ninja?
         @pending_items = Question.where("id not in (?)", Question.joins(:responses))
+        @new_comment_items = current_user.new_comment.paginate(page: params[:page])
       else
         @question = current_user.questions.build
         @answered_items = current_user.answered.paginate(page: params[:page])

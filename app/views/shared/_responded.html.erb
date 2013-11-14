@@ -1,0 +1,6 @@
+<% if @responded_items.any? %>
+  <ol class="questions">
+    <%= render partial: 'shared/responded_item', collection: @responded_items %>
+  </ol>
+  <%#= will_paginate @responded_items %>
+<% end %>

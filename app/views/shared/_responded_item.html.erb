@@ -1,0 +1,12 @@
+<li id="<%= responded_item.id %>">
+	<span class="content">
+		<b>Question from <%= link_to responded_item.user.username, responded_item.user %>:</b>
+		<br>
+		<%= truncate(responded_item.content, length: 80) %>
+	</span>
+	<span class="timestamp">
+		Asked <%= time_ago_in_words(responded_item.created_at) %> ago.
+	</span>
+	<br>
+		<%= link_to "View this question", responded_item %>
+</li>

@@ -17,12 +17,12 @@ class Question < ActiveRecord::Base
   #  .where('comments.created_at = (SELECT MAX(comments.created_at) FROM comments WHERE comments.question_id = questions.id)')
   #  .group('questions.id')
 
-  scope :last_comments, 
-        joins: "comments",
-        conditions: 
-            "questions.id = comments.question_id and
-            comments.created_at = (SELECT MAX(created_at) FROM COMMENTS)",
-        group: "comments.question_id"
+  #scope :last_comments, 
+  #      joins: "comments",
+  #      conditions: 
+  #          "questions.id = comments.question_id and
+  #          comments.created_at = (SELECT MAX(created_at) FROM COMMENTS)",
+  #      group: "comments.question_id"
 
   def response_feed
   	Response.where("question_id = ?", id)

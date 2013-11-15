@@ -40,9 +40,12 @@ class User < ActiveRecord::Base
 
   def new_comment
     if Rails.env.production?
-      Question.includes(:responses, :comments).where("responses.user_id = ? and comments.user_id != ? and comments.created_at < ?", id, id, "CURRENT_TIMESTAMP - interval '24 hours'")
+      #sql_call = "NOW() - interval '24 hours'"
+      sql_call = '2012-11-14'
+      Question.includes(:responses, :comments).where("responses.user_id = ? and comments.user_id != ? and comments.created_at > ?", id, id, sql_call)
     else
-      Question.includes(:responses, :comments).where("responses.user_id = ? and comments.user_id != ? and comments.created_at < ?", id, id, "DATE_SUB(CURDATE(), INTERVAL 1 DAY)")
+      sql_call = "DATE_SUB(CURDATE(), INTERVAL 1 DAY)"
+      Question.includes(:responses, :comments).where("responses.user_id = ? and comments.user_id != ? and comments.created_at < ?", id, id, sql_call)
     end
 
     #Question.includes(:responses).where("responses.user_id = ? and responses.user_id not in (?)", id, Question.last_commenters)

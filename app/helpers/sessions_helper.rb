@@ -51,6 +51,6 @@ module SessionsHelper
 	end
 
 	def new_comment
-    Question.includes(:responses, :comments).where("responses.user_id = ? and (select comments.user_id from questions join comments order by comments.created_at desc limit 1) != ?", id, id) 
+    Question.includes(:responses, :comments).where("responses.user_id = ? and comments.created_at < ?", id, "DATE_SUB(CURDATE(), INTERVAL 1 DAY)")
   end
 end

@@ -5,7 +5,7 @@
 		<%= truncate(new_comment_item.comments.last.content, length: 80) %>
 	</span>
 	<span class="timestamp">
-		Asked <%= time_ago_in_words(new_comment_item.created_at) %> ago.
+		Commented <%= time_ago_in_words(new_comment_item.comments.last.created_at) %> ago.
 	</span>
 	<br>
 		<%= link_to "View this question", new_comment_item %>

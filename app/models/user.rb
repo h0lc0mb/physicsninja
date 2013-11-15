@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :ninjas
 
+
+  #scope :last_questions, joins(:questions)
+  #  .where('questions.created_at = (SELECT MAX(questions.created_at) FROM comments WHERE questions.user_id = users.id)')
+  #  .group('users.id')
+
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
@@ -34,7 +39,9 @@ class User < ActiveRecord::Base
   end
 
   def new_comment
-    Question.includes(:responses, :comments).where("responses.user_id = ? and (select comments.user_id from questions join comments order by comments.created_at desc limit 1) != ?", id, id) 
+    Question.includes(:responses, :comments).where("responses.user_id = ? and comments.created_at < ?", id, "DATE_SUB(CURDATE(), INTERVAL 1 DAY)")
+
+    #Question.includes(:responses).where("responses.user_id = ? and responses.user_id not in (?)", id, Question.last_commenters)
   end
 
   private

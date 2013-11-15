@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
 
   def new_comment
     if Rails.env.production?
-      sql_call = "CURRENT_DATE() - interval '24 hours'"
+      sql_call = "DATE_TRUNC('day', NOW()) - interval '1 day'"
       #sql_call = '2012-11-14'
       Question.includes(:responses, :comments).where("responses.user_id = ? and comments.user_id != ? and comments.created_at > ?", id, id, sql_call)
     else

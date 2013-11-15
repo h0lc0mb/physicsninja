@@ -39,9 +39,14 @@ class User < ActiveRecord::Base
   end
 
   def new_comment
-    Question.includes(:responses, :comments).where("responses.user_id = ? and comments.created_at < ?", id, "DATE_SUB(CURDATE(), INTERVAL 1 DAY)")
+    if Rails.env.production?
+      Question.includes(:responses, :comments).where("responses.user_id = ? and comments.user_id != ? and comments.created_at < ?", id, id, "NOW() - '1 day'::INTERVAL")
+    else
+      Question.includes(:responses, :comments).where("responses.user_id = ? and comments.user_id != ? and comments.created_at < ?", id, id, "DATE_SUB(CURDATE(), INTERVAL 1 DAY)")
+    end
 
     #Question.includes(:responses).where("responses.user_id = ? and responses.user_id not in (?)", id, Question.last_commenters)
+    #Question.joins(:responses, :last_comments).where("responses.user_id = ? and last_comments.user_id != ?", id, id)
   end
 
   private

@@ -7,5 +7,10 @@ class Comment < ActiveRecord::Base
   validates :question_id, presence: true
   validates :user_id, presence: true
 
-  scope :last_comments, -> { where('created_at = (SELECT MAX(created_at) FROM comments GROUP BY question_id') }
+  scope :last_comments, 
+        conditions: 
+            "comments.created_at in 
+            	(SELECT create_time FROM
+            		(SELECT question_id, MAX(created_at) create_time FROM comments GROUP BY question_id))",
+        group: "comments.question_id"
 end

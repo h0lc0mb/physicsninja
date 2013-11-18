@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  before_filter :admin_user, only: [:admin]
   
   def home
   	if signed_in?
@@ -18,5 +19,13 @@ class StaticPagesController < ApplicationController
   end
 
   def about
+  end
+
+  def admin
+    @installs = User.all
+    @pending_items = Question.where("id not in (?)", Question.joins(:responses))
+    @answered_items = Question.where("id in (?)", Question.joins(:responses))
+    # not right
+    @new_comment_items = Question.last_comments.joins(:responses).where("comments.user_id != ?", "responses.user_id")
   end
 end

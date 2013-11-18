@@ -50,6 +50,7 @@
               <%= link_to "Buy more questions", plans_path, class: "btn btn-large btn-primary" %>
             </section>
           <% end %>
+          <p>Want to be ninja? <%= link_to "Learn more.", new_ninja_path %><p>
         </aside>
         <div class="span8">
           <h3>Answered questions <i>(<%= @answered_items.count %>)</i></h3>
@@ -73,9 +74,11 @@
           <section>
             <%= link_to "Purchase", new_purchase_path(plan_id: 1), class: "btn btn-large btn-primary" %>
           </section>
+          <p>Want to be ninja? <%= link_to "Learn more.", new_ninja_path %><p>
         </aside>
         <div class="span8">
           <h3>Example, copy, whatever, BUY THIS</h3>
+          
         </div>
       </div>
     <% end %>

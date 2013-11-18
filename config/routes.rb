@@ -19,6 +19,7 @@ Physicsninja::Application.routes.draw do
 
   match '/support', to: 'static_pages#support'
   match '/about',   to: 'static_pages#about'
+  match '/admin',   to: 'static_pages#admin'
 
   match 'users/:id/toggle_admin', to: 'users#toggle_admin'
   match 'users/:id/toggle_ninja', to: 'users#toggle_ninja'

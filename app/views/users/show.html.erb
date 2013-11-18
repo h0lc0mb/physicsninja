@@ -13,7 +13,7 @@
       </span>
     </aside>
     <div class="span8">
-      <h3>Questions with new comments <i>(<%= @new_comment_items.count %>)</i></h3>
+      <h3>Questions with new comments <i>(<%= @new_comment_items.all.count %>)</i></h3>
       <ol class="questions">
         <%= render 'shared/new_comment' %>
       </ol>

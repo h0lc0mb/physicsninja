@@ -2,17 +2,16 @@ class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update, :destroy, :toggle_admin, :toggle_ninja]
   before_filter :correct_user,   only: [:edit, :update]
   before_filter :admin_user,     only: [:index, :destroy, :toggle_admin, :toggle_ninja]
-  before_filter :correct_or_special_user, only: :show
+  before_filter :correct_or_special_user, only: :show #should all ninjas be able to see this?
   
   def show
   	@user = User.find(params[:id])
     if @user.ninja?
-      # you should change these from current_user
-      @new_comment_items = current_user.new_comment.paginate(page: params[:page])
-      @responded_items = current_user.responded.paginate(page: params[:page])
+      @new_comment_items = @user.new_comment.paginate(page: params[:page])
+      @responded_items = @user.responded.paginate(page: params[:page])
     else
       @answered_items = @user.answered.paginate(page: params[:page])
-      @pending_items = current_user.pending.paginate(page: params[:page])
+      @pending_items = @user.pending.paginate(page: params[:page])
     end
   end
 

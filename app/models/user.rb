@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
     #Question.joins(:responses, :last_comments).where("responses.user_id = ? and last_comments.user_id != ?", id, id)
 
     #Question.joins(:last_comments).where("last_comments.user_id != ?", id)
-    Question.last_comments.joins(:responses).where("responses.user_id = ? and comments.user_id != ?", id, id)
+    Question.last_comments.joins(:responses).where("responses.user_id = ? and comments.user_id != ?", id, id).group("questions.id")
   end
 
   #select questions.* from questions

@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
     if @user.ninja?
+      # you should change these from current_user
       @new_comment_items = current_user.new_comment.paginate(page: params[:page])
       @responded_items = current_user.responded.paginate(page: params[:page])
     else

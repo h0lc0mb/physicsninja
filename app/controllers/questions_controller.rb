@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
   before_filter :signed_in_user
   before_filter :correct_user,   only: :destroy
+  before_filter :admin_user, only: [:pending, :answered, :commented]
   # Add before_filter so only non-ninja, non-admin can ask questions?
 
   def create
@@ -33,6 +34,18 @@ class QuestionsController < ApplicationController
   end
 
   def index
+  end
+
+  def pending
+    @pending_items = Question.where("id not in (?)", Question.joins(:responses))
+  end
+
+  def answered
+    @answered_items = Question.where("id in (?)", Question.joins(:responses))
+  end
+
+  def commented
+    @new_comment_items = Question.last_comments.where("comments.user_id not in (?)", User.where(ninja: true))
   end
 
   private

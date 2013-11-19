@@ -25,7 +25,6 @@ class StaticPagesController < ApplicationController
     @installs = User.all
     @pending_items = Question.where("id not in (?)", Question.joins(:responses))
     @answered_items = Question.where("id in (?)", Question.joins(:responses))
-    # not right
-    @new_comment_items = Question.last_comments.joins(:responses).where("comments.user_id != ?", "responses.user_id")
+    @new_comment_items = Question.last_comments.where("comments.user_id not in (?)", User.where(ninja: true))
   end
 end

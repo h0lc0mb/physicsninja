@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :ninjas
 
-
   #scope :last_questions, joins(:questions)
   #  .where('questions.created_at = (SELECT MAX(questions.created_at) FROM comments WHERE questions.user_id = users.id)')
   #  .group('users.id')

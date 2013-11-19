@@ -1,0 +1,12 @@
+<% if signed_in? %>
+  <% if current_user.admin? %>
+  	<% provide(:title, 'Answered') %>
+  	<h1>Answered Questions</h1>
+		<% if @answered_items.any? %>
+			<ol class="questions">
+			  <%= render partial: 'shared/answered_item', collection: @answered_items %>
+			</ol>
+		  <%#= will_paginate @answered_items %>
+		<% end %>
+	<% end %>
+<% end %>

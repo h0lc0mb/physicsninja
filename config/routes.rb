@@ -21,6 +21,10 @@ Physicsninja::Application.routes.draw do
   match '/about',   to: 'static_pages#about'
   match '/admin',   to: 'static_pages#admin'
 
+  match '/pending',   to: 'questions#pending'
+  match '/answered',  to: 'questions#answered'
+  match '/commented', to: 'questions#commented'
+
   match 'users/:id/toggle_admin', to: 'users#toggle_admin'
   match 'users/:id/toggle_ninja', to: 'users#toggle_ninja'
   match 'users/:id/give_q',       to: 'users#give_q'

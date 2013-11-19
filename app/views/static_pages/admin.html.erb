@@ -2,11 +2,9 @@
   <% if current_user.admin? %>
   	<% provide(:title, 'Admin') %>
   	<h1>Admin</h1>
-  	<h4><%= link_to "Installs", users_path %>: <%= @installs.count %></h4>
-  	<h4>Pending Questions (link to pending): <%= @pending_items.count %></h4>
-  	<font color= "gray">
-  		<h4>Questions with new user comments (link to new comments): <%= @new_comment_items.all.count %></h4>
-  	</font>
-  	<h4>Answered Questions (link to answered): <%= @answered_items.count %></h4>
+  	<h4><%= link_to "Users:", users_path %> <%= @installs.count %></h4>
+  	<h4><%= link_to "Pending Questions:", pending_path %> <%= @pending_items.count %></h4>
+  	<h4><%= link_to "Questions with new user comments:", commented_path %> <%= @new_comment_items.all.count %></h4>
+  	<h4><%= link_to "Answered Questions:", answered_path %> <%= @answered_items.count %></h4>
   <% end %>
 <% end %>

@@ -1,0 +1,12 @@
+<% if signed_in? %>
+  <% if current_user.admin? %>
+  	<% provide(:title, 'Pending') %>
+  	<h1>Pending Questions</h1>
+		<% if @pending_items.any? %>
+			<ol class="questions">
+			  <%= render partial: 'shared/pending_item', collection: @pending_items %>
+			</ol>
+		  <%#= will_paginate @pending_items %>
+		<% end %>
+	<% end %>
+<% end %>

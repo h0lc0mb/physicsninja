@@ -21,7 +21,7 @@ class Question < ActiveRecord::Base
         joins(:comments).where("comments.created_at in 
                                 (SELECT create_time FROM
                                 (SELECT question_id, MAX(created_at) create_time FROM comments GROUP BY question_id) t1)")
-                        .group("comments.question_id")
+                        .group("comments.question_id, comments.created_at")
       }
 
   def response_feed

@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   def new_comment
     Question.last_comments.joins(:responses)
       .where("responses.user_id = ? and comments.user_id != ?", id, id)
-      .group("questions.id")
+      .group("questions.id, comments.created_at")
       .order("comments.created_at ASC")
   end
 

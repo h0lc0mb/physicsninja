@@ -1,0 +1,103 @@
+<div class="row">
+  <aside class="span6">
+    <div class="comment_unit">
+      <b>Question:</b> 
+      <p><%= @example.question %></p>
+    </div>
+  </aside>
+  <div class="span6">
+    <div class="response_content">
+      <b>Answer: </b>
+      <% if @example.id == 2 %>
+        <p><b>Elastic</b>
+          <br />In an elastic collision, both energy and momentum are conserved.</p>
+          <p>Applying conservation of momentum gives you:
+            <br />m1*v1_0 = m1*v1 + m2*v2
+            <br />(0.15)*(13) = (0.15)*v1 + (0.3)*v2</p>
+            <p>Then, applying conservation of energy gives you:
+              <br />(1/2)*m1*(v1_0)^2 = (1/2)*m1*(v1)^2 + (1/2)*m2*(v2)^2
+              <br />m1*(v1_0)^2 = m1*(v1)^2 + m2*(v2)^2
+              <br />(0.15)*(13)^2 = (0.15)*(v1)^2 + (0.3)*(v2)^2</p>
+              <p>So now you have two equations with two unknowns:
+                <br />(1) (0.15)*(13) = (0.15)*v1 + (0.3)*v2
+                <br />(2) (0.15)*(13)^2 = (0.15)*(v1)^2 + (0.3)*(v2)^2</p>
+              <p>You can rewrite eqn(1) as
+                <br />(0.3)*v2 = 1.95 - (0.15)v1
+                <br />v2 = 6.5 - 0.5v1</p>
+              <p>And then plug this into eqn(2) for v2 (the arithmetic gets annoying, so bear with us here!):
+                <br />(1.95)^2 = (0.15)*(v1)^2 + (0.3)*(6.5 - 0.5v1)^2
+                <br />3.8025 = (0.15)*(v1)^2 + (0.3)*(42.25 - 6.5v1 + 0.25v1^2)
+                <br />3.8025 = (0.15)*(v1)^2 + (12.675 - 1.95v1 + 0.075v1^2)
+                <br />(0.225)*(v1)^2 - 1.95v1 + 8.8725 = 0</p>
+              <p>Solving this quadratic equation will give you v1.</p>
+              <p>Then you can plug your v1 into this equation (which you got above) to solve for v2:
+                <br />v2 = 6.5 - 0.5v1</p>
+              <p><b>Inelastic</b>
+                <br />In an inelastic collision, only momentum is conserved (energy is not). However, if the collision is *perfectly* inelastic, then the balls stick together and move with the same velocity (v_f) at the end. So you'll have:</p>
+                <p>m1*v1_0 = (m1 + m2) * v_f
+                  <br />(0.15)*(13) = [ (0.15) + (0.3) ] * v_f</p>
+                  <p>and you can solve for v_f.</p>
+      <% elsif @example.id == 3 %>
+        <p>There is more going on in the question than meets the eye! To find the angle, our strategy will be to use kinematics to find the x- and y-components of the dart's velocity (v*cos(a) and v*sin(a)), and use those to find the angle a.</p>
+        <p>In the horizontal direction,</p>
+        <p>x = v*cos(a)*t</p>
+        <p>where v is the initial velocity and a is the angle at which the dart is thrown. Plugging in the given values for x and t gives you a value for v*cos(a).</p>
+        <p>However, to find the angle we'll need to get rid of that extra v. This means you need to find v*sin(a) (for the vertical direction) to be able to find the angle. This is the tricky part.</p>
+        <p>You have to split the dart's trajectory into two parts: the first part en route to its highest point y_max (where it momentarily comes to rest) and then its descent to the dartboard. We'll split the total time into t_1 and t_2 accordingly. </p>
+        <p>On the first part of the trajectory, you know:</p>
+        <p>y_max = (1/2) (v*sin(a)) * (t_1)</p>
+        <p>(from the kinematic equation d = (1/2) (v_0 + v_f) * t)</p>
+        <p>You don't know y_max, so get rid of it using what you know about the second part of the trajectory, which is:</p>
+        <p>-y_max = -(1/2)*g*(t_2)^2</p>
+        <p>That is, the dart falls from y_max back to 0 in time t_2 under acceleration g, starting from rest (v=0) at the top of the trajectory. Combining these two equations:</p>
+        <p>(1/2)*g*(t_2)^2 = (1/2) (v*sin(a)) * (t_1)
+          <br />g*(t_2)^2 = v*sin(a) * (t_1)</p>
+          <p>You know t_1 + t_2 = 0.447 s, so replace t_2 accordingly</p>
+          <p>g * (0.447 - t_1)^2 = v*sin(a) * (t_1)</p>
+          <p>Finally, you also know from the kinematic equations that (for the first part of the trajectory):</p>
+          <p>0 = v*sin(a) - g*(t_1)
+            <br />v*sin(a) = g*(t_1)
+            <br />t_1 = (1/g)*v*sin(a)</p>
+            <p>So replace this for t_1 in your equation above. That will allow you to solve for v*sin(a).</p>
+            <p>Once you have v*sin(a), you can write:</p>
+            <p>tan(a) = vsin(a) / v cos(a)</p>
+            <p>Using the two values for vsin(a) and vcos(a) that you got before. Then you can just take the inverse tangent to solve for a! </p>
+      <% elsif @example.id == 4 %>
+        <p>Short answer: Nope! But it also depends on what you mean by "thing" in "anything" ;)</p>
+        <p>Long answer: According to special relativity, the faster an object goes, the more massive it becomes. Heavier objects require a greater quantity of force to propel them forward and maintain their speed. The relativistic equations show that if an object with any mass were to achieve the speed of light, its mass would become infinite, and meanwhile, the force propelling it would have to be infinite as well. We do not know of any forces that can do that!</p>
+        <p>An exception: after the Big Bang occurred, it appears that the universe expanded at a rate faster than the speed of light--but that's kind of neither here not there since empty space has zero mass. Also, quantum entanglement shows that subatomic particles can react to information about one another instantly, even if they are separated by long distances, which suggests faster-than-light travel.</p>
+        <p>But most of the time: infinite mass require infinite force, that's a no-go, so the speed of light is your limit!</p>
+      <% elsif @example.id == 5 %>
+        <p>Going to assume the planet is at rest and you guys aren't expected to be dealing with effective masses and such...but if that's the case it's easy to change :) (I mean, not *easy*, but doable)</p>
+        <p>At the distance of closest approach, the particle's potential energy should be at a maximum. We also know that the particle must also obey a) conservation of energy and b) conservation of angular momentum. </p>
+        <p>Initially, the particle is very far away, so the gravitational potential energy is effectively 0. Its initial energy is then:</p>
+        <p>E_0 = (1/2)m(v_0)^2</p>
+        <p>Meanwhile, its angular momentum is:</p>
+        <p>L_0 = m(v_0)b</p>
+        <p>(just using L = r x p --the r to start has magnitude b)</p>
+        <p>Later, at a distance (r) from the planet, the particle's energy at any point is given by:</p>
+        <p>E = (1/2)*m*(v)^2 - (GMm)/r</p>
+        <p>We can break the velocity (v) into its components in polar coordinates using:</p>
+        <p>v = sqrt[ (v_rad)^2 + (v_tan)^2 ]
+          <br />v = sqrt[ (dr/dt)^2 + r^2(dθ/dt)^2 ]</p>
+          <p>Rewriting velocity this way will be useful when dealing with angular momentum in a moment. So we can write the energy as:</p>
+          <p>E = (1/2)*m*[ (dr/dt)^2 + r^2(dθ/dt)^2 ] - (GMm)/r</p>
+          <p>Meanwhile, when the particle is a distance r from the planet, it will have angular momentum equal to:</p>
+          <p>L = m*r*(v_tan) = m*(r^2)(dθ/dt)</p>
+          <p>Since momentum is conserved,</p>
+          <p>L = L_0
+            <br />m*(r^2)(dθ/dt) = m(v_0)b
+            <br />(dθ/dt) = (v_0)b/(r^2)</p>
+            <p>We can plug this into our energy equation to get:</p>
+            <p>E = (1/2)*m*[ (dr/dt)^2 + (v_0)^2(b^2) / (r^2) ] - (GMm)/r</p>
+            <p>At the distance of closest approach, the potential energy is maximized, which means dr/dt = 0. So:</p>
+            <p>E = (1/2)*m*(v_0)^2(b^2) / (r^2) - (GMm)/r</p>
+            <p>And by conservation of energy:</p>
+            <p>(1/2)*m*(v_0)^2(b^2) / (r^2) - (GMm)/r = (1/2)m(v_0)^2
+              <br />(1/2)*(v_0)^2(b^2) / (r^2) - (GM)/r = (1/2)(v_0)^2
+              <br />(v_0)^2(r^2) + 2GMr - (v_0)^2(b^2) = 0</p>
+              <p>This should allow you to solve for (r). However, you may want to rewrite r in terms of L or something else, depending on what terms wound up in your derivation of ε and k.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

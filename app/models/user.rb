@@ -7,10 +7,6 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :ninjas
 
-  #scope :last_questions, joins(:questions)
-  #  .where('questions.created_at = (SELECT MAX(questions.created_at) FROM comments WHERE questions.user_id = users.id)')
-  #  .group('users.id')
-
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
@@ -26,42 +22,23 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   def pending
-    Question.where("user_id = ? and id not in (?)", id, Question.joins(:responses))
+    Question.where("user_id = ? and id not in (?)", id, Question.joins(:responses)).order("questions.created_at DESC")
   end
 
   def answered
-    Question.joins(:responses).where("questions.user_id = ?", id)
+    Question.joins(:responses).where("questions.user_id = ?", id).order("questions.created_at DESC")
   end
 
   def responded
-    Question.joins(:responses).where("responses.user_id = ?", id)
+    Question.joins(:responses).where("responses.user_id = ?", id).order("responses.created_at DESC")
   end
 
   def new_comment
-    #if Rails.env.production?
-      #sql_call = "NOW() - interval '1 day'"
-    #  sql_call = '2013-11-14'
-    #else
-    #  sql_call = "DATE_SUB(CURDATE(), INTERVAL 1 DAY)"
-    #end
-    #Question.includes(:responses, :comments).where("responses.user_id = ? and comments.user_id != ? and comments.created_at > ?", id, id, sql_call)
-
-    #Question.includes(:responses).where("responses.user_id = ? and responses.user_id not in (?)", id, Question.last_commenters)
-    #Question.joins(:responses, :last_comments).where("responses.user_id = ? and last_comments.user_id != ?", id, id)
-
-    #Question.joins(:last_comments).where("last_comments.user_id != ?", id)
-    Question.last_comments.joins(:responses).where("responses.user_id = ? and comments.user_id != ?", id, id).group("questions.id")
+    Question.last_comments.joins(:responses)
+      .where("responses.user_id = ? and comments.user_id != ?", id, id)
+      .group("questions.id")
+      .order("comments.created_at ASC")
   end
-
-  #select questions.* from questions
-  #join responses on questions.id = responses.question_id
-  #join 
-  #(select comments.* from comments
-  #  where created_at = (select max(created_at) from comments)
-  #  group by question_id) last_comments
-  #comments on questions.id = comments.question_id
-  #where responses.user_id = id
-  #and last_comments.userid != id
 
   private
 

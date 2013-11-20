@@ -2,6 +2,7 @@ class QuestionsController < ApplicationController
   before_filter :signed_in_user
   before_filter :correct_user,   only: :destroy
   before_filter :admin_user, only: [:pending, :answered, :commented]
+  before_filter :correct_or_special_user, only: :show
   # Add before_filter so only non-ninja, non-admin can ask questions?
 
   def create

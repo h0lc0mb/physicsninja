@@ -9,6 +9,8 @@ Physicsninja::Application.routes.draw do
   resources :purchases,   only: [:show, :new, :create, :destroy]
   resources :ninjas,      only: [:new, :create]
 
+  resources :examples,    only: :show
+
   root to: 'static_pages#home'
 
   match '/signup',  to: 'users#new'
@@ -17,10 +19,6 @@ Physicsninja::Application.routes.draw do
 
   match '/buy',     to: 'plans#index'
 
-  match '/support', to: 'static_pages#support'
-  match '/about',   to: 'static_pages#about'
-  match '/admin',   to: 'static_pages#admin'
-
   match '/pending',   to: 'questions#pending'
   match '/answered',  to: 'questions#answered'
   match '/commented', to: 'questions#commented'
@@ -28,6 +26,10 @@ Physicsninja::Application.routes.draw do
   match 'users/:id/toggle_admin', to: 'users#toggle_admin'
   match 'users/:id/toggle_ninja', to: 'users#toggle_ninja'
   match 'users/:id/give_q',       to: 'users#give_q'
+
+  match '/support', to: 'static_pages#support'
+  match '/about',   to: 'static_pages#about'
+  match '/admin',   to: 'static_pages#admin'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

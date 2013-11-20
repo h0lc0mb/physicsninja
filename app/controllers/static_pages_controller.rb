@@ -11,6 +11,7 @@ class StaticPagesController < ApplicationController
         @question = current_user.questions.build
         @answered_items = current_user.answered.paginate(page: params[:page])
     		@pending_items = current_user.pending.paginate(page: params[:page])
+        @example = Example.first
       end
   	end
   end

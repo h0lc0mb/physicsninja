@@ -28,9 +28,10 @@
         <section>
           <%= render 'shared/user_info'%>
         </section>
+        <%= link_to "View admin panel", admin_path, class: "btn btn-large btn-primary" %>
       </aside>
       <div class="span8">
-        <h3>TBD admin stuff</h3>
+        
       </div>
     </div>
   <% else %>
@@ -65,20 +66,86 @@
         </div>
       </div>
     <% else %>
+      <div class="center">
+        <h1>Congratulations, <%= current_user.username %></h1> 
+        <h2>You have entered the lair of the Physics Ninja.</h2>
+      </div>
       <div class="row">
-        <aside class="span4">
-          <section>
-            <%= render 'shared/user_info'%>
-          </section>
-          <br>
-          <section>
-            <%= link_to "Purchase", new_purchase_path(plan_id: 1), class: "btn btn-large btn-primary" %>
-          </section>
-          <p>Want to be ninja? <%= link_to "Learn more.", new_ninja_path %><p>
-        </aside>
-        <div class="span8">
-          <h3>Example, copy, whatever, BUY THIS</h3>
-          
+        <div class="span12">
+          <span style="display:block; height: 10px;"></span>
+          <p>
+            <b>What we do:</b> Give you clear, thorough, hilarious, and helpful answers to any physics question obstructing your path to sleep and/or fun.
+            <br>
+            <b>What you get:</b>
+            1. An answer within 24 hours.
+            <br><span style="display:inline-block; width: 98px;"></span>
+            2. Explanations you can actually understand and learn from.
+            <br><span style="display:inline-block; width: 98px;"></span>
+            3. The option to resolve your unique concerns in a private comments section.
+          </p>
+          <center>
+            <%= link_to "Buy your first question", new_purchase_path(plan_id: 1), class: "btn btn-large btn-primary" %>
+            <span style="display:block; height: 5px;"></span>
+            <p>
+              ...for the low low price of $5 (<%= link_to "WTF why??", '#' %>)
+            </p>
+          </center>
+        </div>
+        <div class="row">
+          <div class="span12">
+            <span style="display:block; height: 5px;"></span>
+            <p>
+              <b>Learn more</b> about <%= link_to "how it works", '#' %>
+              <br>
+              <b>Here's a taste</b> of how we roll:
+            </p>
+          </div>
+          <aside class="span6">
+            <div class="comment_unit">
+              <b>Question:</b> 
+              <p><%= @example.question %></p>
+            </div>
+            <br>
+            <p>
+              <b>More examples</b> of the Ninja's powers:
+              <br>
+              <%= link_to "Elastic and inelastic collisions", example_path(id: 2) %>
+              <br>
+              <%= link_to "Dartboard kinematics", example_path(id: 3) %>
+              <br>
+              <%= link_to "Speed of light", example_path(id: 4) %>
+              <br>
+              <%= link_to "Particles in orbit", example_path(id: 5) %>
+            </p>
+            <br><br>
+            <p>
+              <b>Learn more</b> about the Ninja:
+              <br>
+              <%= link_to "How does it work?", '#' %>
+              <br>
+              <%= link_to "Why do we charge?", '#' %>
+              <br>
+              <%= link_to "Ninja Code of Honor", '#' %>
+            </p>
+          </aside>
+          <div class="span6">
+            <div class="response_content">
+              <b>Answer: </b>
+              <p>The Porsche will reach its maximum acceleration when the force driving it (F_d) is as large as possible. This force F_d reaches a maximum when it is exactly equal to the force of friction on wheels (F_f). This is because if F_d were greater than F_f, the Porsche's wheels would just spin and the car would go nowhere! So at maximum acceleration, you have:</p>
+              <p>F_d = F_f</p>
+              <p>The driving force of the car at the maximum acceleration (a_max) is given by Newton's second law:</p>
+              <p>F_d = m*(a_max)</p>
+              <p>Meanwhile, the force of friction is:</p>
+              <p>F_f = (mu)*F_N</p>
+              <p>where the normal force F_N is the normal force on the drive wheels. Since 2/3 of the total mass is over the drive wheels, the friction force is then:</p>
+              <p>F_f = (mu)*(2/3)*m*g</p>
+              <p>Setting F_d = F_f gives:</p>
+              <p>m*(a_max) = (mu)*(2/3)*m*g</p>
+              <p>The m's cancel, so:</p>
+              <p>a_max = (mu)*(2/3)*g</p>
+              <p>and you can solve for a_max.</p>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>

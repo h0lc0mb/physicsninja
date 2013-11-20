@@ -7,15 +7,7 @@ class Question < ActiveRecord::Base
   validates :content, presence: true, length: { maximum: 2500 }
   validates :user_id, presence: true
 
-  default_scope order: 'questions.created_at DESC'
-
-  #scope :last_commenters, joins(:comments)
-  #  .where('comments.created_at = (SELECT MAX(comments.created_at) FROM comments WHERE comments.question_id = questions.id)')
-  #  .group('questions.id')
-
-  #scope :last_comments, joins(:comments)
-  #  .where('comments.created_at = (SELECT MAX(comments.created_at) FROM comments WHERE comments.question_id = questions.id)')
-  #  .group('questions.id')
+  #default_scope order: 'questions.created_at DESC'
 
   scope :last_comments, lambda {
         joins(:comments).where("comments.created_at in 

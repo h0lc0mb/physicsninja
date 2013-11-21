@@ -30,6 +30,9 @@ Physicsninja::Application.routes.draw do
   match '/support', to: 'static_pages#support'
   match '/about',   to: 'static_pages#about'
   match '/admin',   to: 'static_pages#admin'
+  match '/how_it_works',   to: 'static_pages#howitworks'
+  match '/why_we_charge',   to: 'static_pages#whywecharge'
+  match '/ninja_code',   to: 'static_pages#ninjacode'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

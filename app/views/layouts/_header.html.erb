@@ -10,12 +10,22 @@
               <li><%= link_to "My Answers", user_path(current_user) %></li>
             <% end %>
           <% end %>
-          <li><%= link_to "Help", support_path %></li>
           <% if signed_in? %>
             <% if !current_user.ninja? && !current_user.admin? %>
               <li><%= link_to "Buy", plans_path %></li>
             <% end %>
           <% end %>
+          <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Help<b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "How it works", how_it_works_path %></li>
+                <li><%= link_to "Why we charge", why_we_charge_path %></li>
+                <li><%= link_to "Ninja Code", ninja_code_path %></li>
+                <li><%= link_to "Support", support_path %></li>
+              </ul>
+            </li>
           <% if signed_in? %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">

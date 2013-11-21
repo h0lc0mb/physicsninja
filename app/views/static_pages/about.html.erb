@@ -1,8 +1,12 @@
 <% provide(:title, 'About') %>
-<h1>About</h1>
-<h2> Nice try, grasshopper.</h2>
+<div class="center">
+	<h1>About</h1>
+	<h2> Nice try, grasshopper.</h2>
+</div>
 <p>
   We can't disclose the Ninja's origins.
   <br>
-  However, if something's wrong, try the (support page)
+  However, if something's wrong, learn how to get help on the <%= link_to "support", support_path %> page.
+  <br>
+  You can also learn more about how the ninja works <%= link_to "here", how_it_works_path %>.
 </p>

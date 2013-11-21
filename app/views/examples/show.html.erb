@@ -4,12 +4,13 @@
       <b>Question:</b> 
       <% if @example.id == 2 %>
         <p>Ball 1, with a mass of 150g and traveling at 13.0m/s , collides head on with ball 2, which has a mass of 300g and is initially at rest. What are the final velocities of each ball if the collision is perfectly elastic? What are the final velocities of each ball if the collision is perfectly inelastic?</p>
-      <% if @example.id == 3 %>
+      <% elsif @example.id == 3 %>
         <p>A dart is thrown at a dartboard 2.37 m away. When the dart is released at the same height as the center of the dartboard, it hits the center in .447s. At what angle relative to the floor was the dart thrown?</p>
-      <% if @example.id == 4 %>
+      <% elsif @example.id == 4 %>
         <p>Can anything travel faster than the speed of light?</p>
-      <% if @example.id == 5 %>
+      <% elsif @example.id == 5 %>
         <p>Dear Physics Ninja: A particle with speed V0 and impact parameter b starts far away from a planet of mass M. Starting from scratch(that is, without using any of the results from earlier), find the distance of closest approach to the planet.</p>
+      <% end %>
     </div>
   </aside>
   <div class="span6">
@@ -103,7 +104,7 @@
             <p>(1/2)*m*(v_0)^2(b^2) / (r^2) - (GMm)/r = (1/2)m(v_0)^2
               <br />(1/2)*(v_0)^2(b^2) / (r^2) - (GM)/r = (1/2)(v_0)^2
               <br />(v_0)^2(r^2) + 2GMr - (v_0)^2(b^2) = 0</p>
-              <p>This should allow you to solve for (r). However, you may want to rewrite r in terms of L or something else, depending on what terms wound up in your derivation of ε and k.</p>
+              <p>This should allow you to solve for (r). However, you may want to rewrite r in terms of L or something else, depending on what terms wound up in your derivation of ε and k.</p>   
       <% end %>
     </div>
   </div>

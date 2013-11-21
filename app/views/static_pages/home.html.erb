@@ -71,33 +71,39 @@
         <h2>You have entered the lair of the Physics Ninja.</h2>
       </div>
       <div class="row">
-        <div class="span12">
+        <div class="span10 offset1">
           <span style="display:block; height: 10px;"></span>
+          <h3>What we do</h3>
           <p>
-            <b>What we do:</b> Give you clear, thorough, hilarious, and helpful answers to any physics question obstructing your path to sleep and/or fun.
-            <br>
-            <b>What you get:</b>
-            1. An answer within 24 hours.
-            <br><span style="display:inline-block; width: 98px;"></span>
-            2. Explanations you can actually understand and learn from.
-            <br><span style="display:inline-block; width: 98px;"></span>
-            3. The option to resolve your unique concerns in a private comments section.
+            Give you clear, thorough, hilarious, and helpful answers to any physics question obstructing your path to sleep and/or fun.
           </p>
+          <span style="display:block; height: 1px;"></span>
+          <h3>What you get:</h3>
+          <ul>
+            <p>
+              1. An answer within 24 hours.
+              <br>
+              2. Explanations you can actually understand and learn from.
+              <br>
+              3. The option to resolve your unique concerns in a private comments section.
+            </p>
+          </ul>
+          <span style="display:block; height: 10px;"></span>
           <center>
             <%= link_to "Buy your first question", new_purchase_path(plan_id: 1), class: "btn btn-large btn-primary" %>
-            <span style="display:block; height: 5px;"></span>
+            <span style="display:block; height: 8px;"></span>
             <p>
-              ...for the low low price of $5 (<%= link_to "WTF why??", '#' %>)
+              ...for the low low price of $5 (<%= link_to "WTF why??", why_we_charge_path %>)
             </p>
           </center>
+          <p>
+            Learn more about <%= link_to "how it works", how_it_works_path %>
+          </p>
         </div>
         <div class="row">
           <div class="span12">
             <span style="display:block; height: 5px;"></span>
             <p>
-              <b>Learn more</b> about <%= link_to "how it works", '#' %>
-              <br>
-              <b>Here's a taste</b> of how we roll:
             </p>
           </div>
           <aside class="span6">
@@ -121,11 +127,11 @@
             <p>
               <b>Learn more</b> about the Ninja:
               <br>
-              <%= link_to "How does it work?", '#' %>
+              <%= link_to "How does it work?", how_it_works_path %>
               <br>
-              <%= link_to "Why do we charge?", '#' %>
+              <%= link_to "Why do we charge?", why_we_charge_path %>
               <br>
-              <%= link_to "Ninja Code of Honor", '#' %>
+              <%= link_to "Ninja Code of Honor", ninja_code_path %>
             </p>
           </aside>
           <div class="span6">

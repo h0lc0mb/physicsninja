@@ -28,4 +28,13 @@ class StaticPagesController < ApplicationController
     @answered_items = Question.where("id in (?)", Question.joins(:responses))
     @new_comment_items = Question.last_comments.where("comments.user_id not in (?)", User.where(ninja: true)).group("questions.id")
   end
+
+  def howitworks
+  end
+
+  def whywecharge
+  end
+
+  def ninjacode
+  end
 end

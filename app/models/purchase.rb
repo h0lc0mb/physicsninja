@@ -11,18 +11,29 @@ class Purchase < ActiveRecord::Base
 
   def save_with_payment
   	if valid?
+      #if user.stripe_customer_token.nil?
+        #customer = Stripe::Customer.create(description: user_id, 
+        #                                   email: user.email.to_s,
+        #                                   card: stripe_card_token)
+        #user.stripe_customer_token = customer.id
+        #save!
+      #end
+
+      #charge = Stripe::Charge.create(amount: (plan.price * 100).to_i,
+      #                               currency: "usd",
+      #                               customer: user.stripe_customer_token)
+      #save!
+
       if user.stripe_customer_token.nil?
-        customer = Stripe::Customer.create(description: user_id, 
-                                           email: user.email.to_s,
-                                           card: stripe_card_token)
-        user.stripe_customer_token = customer.id
-        #user.stripe_card_token = stripe_card_token
-        save!
+        user.stripe_customer_token = "activated"
       end
 
       charge = Stripe::Charge.create(amount: (plan.price * 100).to_i,
                                      currency: "usd",
-                                     customer: user.stripe_customer_token)
+                                     card: stripe_card_token,
+                                     description: user.email.to_s)
+
+      user.q_balance += plan.questions
       save!
   	end
   rescue Stripe::InvalidRequestError => e
@@ -30,9 +41,4 @@ class Purchase < ActiveRecord::Base
     errors.add :base, "There was a problem with your credit card."
     false
   end
-
-  #def update_qbalance
-  #  new_balance = user.q_balance + plan.questions
-  #  user.update_attribute(:q_balance, new_balance)
-  #end
 end

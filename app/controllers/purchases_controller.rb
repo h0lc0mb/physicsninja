@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
 	before_filter :signed_in_user
-	before_filter :correct_or_admin, only: :show
+	before_filter :purchaser_or_admin, only: :show
+	before_filter :correct_or_admin, only: :index
 
 	def new
 		plan = Plan.find(params[:plan_id])
@@ -16,11 +17,9 @@ class PurchasesController < ApplicationController
 		@purchase = Purchase.new(params[:purchase])
 		@purchase.user = current_user
 		if @purchase.save_with_payment
-			new_balance = @purchase.user.q_balance + @purchase.plan.questions
-			@purchase.user.update_attribute(:q_balance, new_balance)
   		sign_in @purchase.user
-			flash[:success] = "Purchase successful!"
-			redirect_to @purchase
+			flash[:success] = "You successfully purchased #{@purchase.plan.questions} questions!"
+			redirect_to root_url
 		else
 			render 'new'
 		end
@@ -30,12 +29,21 @@ class PurchasesController < ApplicationController
 		@purchase = Purchase.find(params[:id])
 	end
 
+	def index
+		@user = User.find(params[:user_id])
+	end
+
 	def destroy
 	end
 
 	private
-		def correct_or_admin
+		def purchaser_or_admin
       @purchase = Purchase.find(params[:id])
       redirect_to root_url, notice: "Sorry, grasshopper: You must be an admin to view that page." unless current_user.id == @purchase.user_id || current_user.try(:admin?)
     end
+
+    def correct_or_admin
+    	@user = User.find(params[:user_id])
+	    redirect_to root_url, notice: "Sorry, grasshopper: You must be a ninja to view that page." unless current_user?(@user) || current_user.try(:admin?)
+	  end
 end

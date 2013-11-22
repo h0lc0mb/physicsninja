@@ -21,6 +21,8 @@ purchase =
     if status == 200
       $('#purchase_stripe_card_token').val(response.id)
       $('#new_purchase')[0].submit()
+    else if response.error.message.contains("unexpected")
+      $('input[type=submit]').attr('disabled', false)
     else
       $('#stripe_error').text(response.error.message)
-    $('input[type=submit]').attr('disabled', false)
+      $('input[type=submit]').attr('disabled', false)

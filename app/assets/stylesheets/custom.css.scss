@@ -343,3 +343,27 @@ aside {
   font-style: italic;
   color: $grayLight
 }
+
+/* purchases */
+
+.purchases {
+  width:100%;
+  border-collapse:collapse;
+}
+
+.purchases td, .purchases th {
+  border:1px solid $grayMediumDark;
+  padding:3px 20px 2px 7px;
+}
+
+.purchases th {
+  text-align:left;
+  padding-top:5px;
+  padding-bottom:4px;
+  background-color:$grayLighter;
+}
+
+.purchases tr.alt td {
+  color:#000000;
+  background-color:#EAF2D3;
+}

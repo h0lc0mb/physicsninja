@@ -1,5 +1,7 @@
 Physicsninja::Application.routes.draw do
-  resources :users
+  resources :users do
+    resources :purchases, only: :index
+  end
   resources :sessions,    only: [:new, :create, :destroy]
   resources :questions do
     resources :responses, only: [:create, :index, :destroy]

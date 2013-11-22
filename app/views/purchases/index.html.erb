@@ -1,0 +1,34 @@
+<% if signed_in? %>
+	<% provide(:title, 'Purchase History') %>
+<div class="center">
+	<h1>Purchase History</h1>
+	<h2>Current question balance: <%= @user.q_balance %></h2>
+</div>
+	<div class="row">
+    <div class="span10 offset1">
+			<h3>History</h3>
+			<% if @user.purchases.any? %>
+				<div class="purchases">
+					<table id="purchases">
+						<tr>
+					  	<th>Date</th>
+					  	<th>Package</th>
+					  	<th>Questions</th>
+					  	<th>Price</th>
+						</tr>
+						<% @user.purchases.each do |purchase| %>
+							<tr>
+								<td><%= purchase.created_at.to_date %></td>
+								<td><%= purchase.plan.name %></td>
+								<td><%= purchase.plan.questions %></td>
+								<td>$<%= purchase.plan.price %>0</td>
+						</tr>
+						<% end %>
+					</table>
+				</div>
+			<% else %>
+				<p><i>You have not yet made any purchases.</i></p>
+			<% end %>
+		</div>
+	</div>
+<% end %>

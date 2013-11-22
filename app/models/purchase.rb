@@ -24,16 +24,11 @@ class Purchase < ActiveRecord::Base
       #                               customer: user.stripe_customer_token)
       #save!
 
-      if user.stripe_customer_token.nil?
-        user.stripe_customer_token = "activated"
-      end
-
       charge = Stripe::Charge.create(amount: (plan.price * 100).to_i,
                                      currency: "usd",
                                      card: stripe_card_token,
                                      description: user.email.to_s)
-
-      user.q_balance += plan.questions
+      user.update_attribute(:q_balance, user.q_balance + plan.questions)
       save!
   	end
   rescue Stripe::InvalidRequestError => e

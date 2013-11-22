@@ -35,7 +35,7 @@
       </div>
     </div>
   <% else %>
-    <% if !current_user.stripe_customer_token.nil? %>
+    <% if current_user.purchases.any? %>
       <div class="row">
         <aside class="span4">
           <section>

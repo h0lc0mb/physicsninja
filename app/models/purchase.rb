@@ -28,7 +28,7 @@ class Purchase < ActiveRecord::Base
                                      currency: "usd",
                                      card: stripe_card_token,
                                      description: user.email.to_s)
-      new_balance = user.q_balance + plan.questions
+      new_balance = [user.q_balance, plan.questions].sum
       user.update_attribute(:q_balance, new_balance)
       save!
   	end

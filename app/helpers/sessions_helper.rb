@@ -50,11 +50,6 @@ module SessionsHelper
 		redirect_to root_url, notice: "Sorry, grasshopper: You must be a ninja to view that page." unless current_user.try(:ninja?)
 	end
 
-	def correct_or_special_user
-    @user = User.find(params[:id])
-    redirect_to root_url, notice: "Sorry, grasshopper: You must be a ninja to view that page." unless current_user?(@user) || current_user.try(:admin?) || current_user.try(:ninja?)
-  end
-
 	def new_comment
     Question.includes(:responses, :comments).where("responses.user_id = ? and comments.created_at < ?", id, "DATE_SUB(CURDATE(), INTERVAL 1 DAY)")
   end

@@ -55,4 +55,10 @@ class QuestionsController < ApplicationController
   		@question = current_user.questions.find_by_id(params[:id])
   		redirect_to root_url if @question.nil?
   	end
+
+    def correct_or_special_user
+      @question = Question.find(params[:id])
+      @user = @question.user
+      redirect_to root_url, notice: "Sorry, grasshopper: You must be a ninja to view that page." unless current_user?(@user) || current_user.try(:admin?) || current_user.try(:ninja?)
+    end
 end

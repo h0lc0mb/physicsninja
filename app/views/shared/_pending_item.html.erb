@@ -8,5 +8,9 @@
 		Asked <%= time_ago_in_words(pending_item.created_at) %> ago.
 	</span>
 	<br>
-		<%= link_to "View this question", pending_item %>
+	<% if current_user.ninja? %>
+		<%= link_to "Answer question", pending_item %>
+	<% else %>
+		<%= link_to "View question or leave a comment", pending_item %>
+	<% end %>
 </li>

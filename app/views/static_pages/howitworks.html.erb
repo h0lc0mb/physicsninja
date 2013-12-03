@@ -12,34 +12,34 @@
 		</p>
 		<p>
 			<b>2. Step-by-step instruction</b> 
-			<ul>Part of Physics’ intimidation appeal is that explanations tend to be a lot more complicated than they really are. We learned that when you break down every problem to bite-size pieces, you *gasp!* actually understand it!</ul>
+			<ul>Other sites answer questions with walls of equations, and they don't explain how they figured out which concepts to apply and why. You might get the answer from them, but you won't learn from it. We break down every problem to bite-size pieces, so you *gasp!* actually understand it!</ul>
 		</p>
 		<p>
 			<b>3. The option to resolve concerns/clarification in a private comments section</b> 
-			<ul>Think of this feature as your checks and balances. We want to make sure our answers were beneficial to you. We want you to be happy with your purchase and learning experience.</ul>
+			<ul>The ninja will work with you one-on-one to make sure you get the answer you need.</ul>
 		</p>
 		<span style="display:block; height: 10px;"></span>
 		<h3>The Rules</h3>
 		<ul>
 			<li>
 				<p>
-					<b>No cheating</b>
+					<b>Don't cheat</b>
 					<br>
-					We will not answer ANY questions that are on a take-home exam, quiz, test. Don’t even think about asking a question taken from an in-class test. Scandalous.
+					We're pretty good at spotting questions lifted from take-home exams. We're here to help you learn--not to help you cheat. So don't ask us to. Follow the <%= link_to "Ninja Code", ninja_code_path %>.
 				</p>
 			</li>
 			<li>
 				<p>
-					<b>No double dipping</b> (aka back channel questions)
+					<b>Don't double dip</b>
 					<br>
-					No matter how cleverly you buried another question within the comment section or maybe emailed it to support help-- we will not answer questions that haven’t been paid for. For us to provide you quality answers, and give you value on your investment, we have to charge for your questions. Nobody likes that asshole who double dips their chip in the queso. Are you that person?!
+					In the spirit of ingenuity, you might be tempted to try to get around paying for questions--say, by submitting them through the comments section or emailing them to our support center. But nobody likes a double dipper. Don't be that person--we won't answer.
 				</p>
 			</li>
 			<li>
 				<p>
-					<b>No cheating</b>
+					<b>Do hold us accountable</b>
 					<br>
-					Seriously. Is it worth the risk? Also, check out our Ninja Honor Code.
+					Our commitment is to give you answers that meet your needs. The Ninja will interact with you personally in the comments if you want to get more clarification, explore a problem for a different angle, or just chat. If an answer isn't working for you or something goes wrong, please let us know via <%= link_to "ninja support", support_path %>.
 				</p>
 			</li>
 		</ul>
@@ -48,19 +48,12 @@
 		<ul class="questions">
 			<li>
 				<p>
-					Q: How can The Physics Ninja help?
+					Q: Okay, I'm here--what do I do?
 					<span style="display:block; height: 5px;"></span>
 					<span class="response_content">
-						A: The Physics Ninja is the ideal way to get the personal attention you seek without the invasion of privacy. Not to mention, we’re time efficient and easy to chat to!
-					</span>
-				</p>
-			</li>
-			<li>
-				<p>
-					Q: How does The Physics Ninja work?
-					<span style="display:block; height: 5px;"></span>
-					<span class="response_content">
-						A: Trust us, we’re physicists.  Once you sign in and buy your “question” plan/packet -- you’re golden. Seriously. We’ve created a simple platform for the most complex content explained. As a first
+						A: First, <%= link_to "buy a question", plans_path %> (the first one is offered at a <%= link_to "discount", new_purchase_path(plan_id: 1) %>). Then just <%= link_to "ask!", root_path %>
+						<br>
+						Check back on your <%= link_to "home page", root_path %> to see your answer within 24 hours (usually less)--just click "View answer" under your question. By clicking on questions, you can also leave comments before or after your answer has been posted if you need to add something or ask for more info.
 					</span>
 				</p>
 			</li>
@@ -69,16 +62,16 @@
 					Q: Who can use The Physics Ninja?
 					<span style="display:block; height: 5px;"></span>
 					<span class="response_content">
-						A: Do you have a question about your physics assignment/homework/lab? Then you qualify!
+						A: Anyone and everyone. We answer high school, college, and general curiosity physics questions.
 					</span>
 				</p>
 			</li>
 			<li>
 				<p>
-					Q: Well, it’s my first time here! Don’t I get to try this for free?!
+					Q: What kinds of questions can I ask?
 					<span style="display:block; height: 5px;"></span>
 					<span class="response_content">
-						A: From the get-go, we show you exactly the kinds of questions you can ask, plus a few examples to get your wheels turning. As a first-time user, you do get a discounted price on your first question asked.
+						A: You can send us a question directly from a homework assignment or textbook, or ask something more general. We can walk you through a tough derivation or just chat about the speed of light. We do it all!
 					</span>
 				</p>
 			</li>
@@ -87,16 +80,7 @@
 					Q: Why is it so expensive? 
 					<span style="display:block; height: 5px;"></span>
 					<span class="response_content">
-						A: Good question! We’re gonna be honest with you. We want this business to succeed and in order for this venture to be legit, we need our wonderful customers to help us -- so we can help you! We’re a micro-tutoring platform. Think of us a your personalized anonymous teacher. You realize that market rates for a tutor (not even a specialized physicist) is $30-$60 an hour. Instead of that hefty sum, you get to choose a la carte the questions you want answered.
-					</span>
-				</p>
-			</li>
-			<li>
-				<p>
-					Q: How do I change or cancel my subscription? 
-					<span style="display:block; height: 5px;"></span>
-					<span class="response_content">
-						A: At any time, you can edit, update or cancel on your Account  > Settings. You can also just buy more questions :)
+						A: The Physics Ninja gives you more than just an answer: In addition to providing clear explanations, we also work with you one-on-one for as long as it takes to help you understand. We charge what we think is fair based on that level of quality (more on that <%= link_to "here", why_we_charge_path %>).
 					</span>
 				</p>
 			</li>
@@ -105,7 +89,18 @@
 					Q: How is my credit card information stored? 
 					<span style="display:block; height: 5px;"></span>
 					<span class="response_content">
-						A: To ensure a high level of security, we use Stripe, a third-party payment processor, to handle all of our transactions. This way, we are able to focus  100% on physics while, another company’s job is focusing on keeping your information safe.  All credit card numbers are transferred over SSL and are encrypted on a disk with AES-256. You can learn more about Stripe's security practices here: stripe.com/help/security.
+						A: To ensure a high level of security, we use <%= link_to "stripe", "http://www.stripe.com", target: '_blank' %> to handle all of our transactions. All credit card numbers are transferred over SSL and are encrypted on a disk with AES-256.
+					</span>
+				</p>
+			</li>
+			<li>
+				<p>
+					Q: Who are you? 
+					<span style="display:block; height: 5px;"></span>
+					<span class="response_content">
+						A: We are the heroes physics deserves, the ones the Internet needs right now. We are the silent guardians, the watchful protectors, the Dark Knights. We are The Physics Ninja.
+						<br><br>
+						Come on, what would the fun be if we told you?
 					</span>
 				</p>
 			</li>

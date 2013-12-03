@@ -8,9 +8,9 @@
 
 Plan.create!(name: "Initiation", price: 5, questions: 1)
 Plan.create!(name: "Novice", price: 9, questions: 1)
-Plan.create!(name: "Apprentice", price: 25, questions: 3)
-Plan.create!(name: "Journeyman", price: 40, questions: 5)
-Plan.create!(name: "Master", price: 75, questions: 10)
+Plan.create!(name: "Raider", price: 25, questions: 3)
+Plan.create!(name: "Spy", price: 40, questions: 5)
+Plan.create!(name: "Warrior", price: 75, questions: 10)
 
 Example.create!(question: "Porsche acceleration")
 Example.create!(question: "Elastic and inelastic collisions")

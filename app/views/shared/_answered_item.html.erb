@@ -1,6 +1,6 @@
 <li id="<%= answered_item.id %>">
 	<span class="content">
-		<b>Question from <%= link_to answered_item.user.username, answered_item.user %>:</b>
+		<b>Answer from <%= link_to answered_item.responses.first.user.username, answered_item.responses.first.user %> on your question:</b>
 		<br>
 		<%= truncate(answered_item.content, length: 80) %>
 	</span>
@@ -8,5 +8,5 @@
 		Answered <%= time_ago_in_words(answered_item.responses.first.created_at) %> ago.
 	</span>
 	<br>
-		<%= link_to "View this question", answered_item %>
+		<%= link_to "View answer or leave a comment", answered_item %>
 </li>

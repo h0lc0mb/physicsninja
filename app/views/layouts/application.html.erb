@@ -8,6 +8,9 @@
     <%= csrf_meta_tags %>
     <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
     <%= render 'layouts/shim' %>
+    <% if content_for? :head %>
+      <%= yield :head %>
+    <% end %>
   </head>
   <body>
     <%= render 'layouts/header' %>

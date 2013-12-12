@@ -37,4 +37,7 @@ class StaticPagesController < ApplicationController
 
   def ninjacode
   end
+
+  def unsubscribe
+  end
 end
